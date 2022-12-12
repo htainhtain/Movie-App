@@ -24,10 +24,10 @@ name it '.env'
 put 'REACT_APP_TMDB_KEY = ??????????'
 Put it under the parent directory
 
-
 ## Visiting app
 
 localhost:3000/
 
 ## live demo
 
+[Live](https://movie-app-red-pi.vercel.app/).

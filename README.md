@@ -17,6 +17,14 @@ npm install
 
 npm start
 
+## Secret key
+
+Create a new file
+name it '.env'
+put 'REACT_APP_TMDB_KEY = ??????????'
+Put it under the parent directory
+
+
 ## Visiting app
 
 localhost:3000/

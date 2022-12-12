@@ -1,0 +1,28 @@
+.selected-movie {
+  min-width: 400px;
+  border: 1px solid var(--color-light-grey-dark);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-movie-delete-container {
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-red-dark);
+  transition: box-shadow ease 0.2s;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-movie-delete-container:hover {
+  box-shadow: rgba(169, 21, 21, 0.7) 0px 5px 15px;
+}
+
+.selected-movie-title-container {
+  width: 50%;
+}

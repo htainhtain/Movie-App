@@ -1,0 +1,57 @@
+.movie-poster-container {
+  width: 250px;
+  height: 370px;
+  position: relative;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%;
+}
+
+.add-to-cart-icon-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--color-text-dark);
+  background-color: rgba(209, 213, 219, 0.5);
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color ease 0.2s;
+}
+
+.imdb-price-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
+.dollar-sign {
+  font-weight: 900;
+}
+
+.add-to-cart-icon-container:hover {
+  background-color: rgba(219, 209, 209, 0.7);
+}
+
+.movie-release-date {
+  color: var(--color-text-light-dark);
+  font-size: 12px;
+}
+
+.movie-original-title {
+  margin: 10px 0px;
+}
+
+.each-movie-description {
+  padding: 10px;
+}
+
+.genre-container {
+  display: flex;
+  flex-wrap: wrap;
+}

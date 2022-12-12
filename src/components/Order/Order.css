@@ -1,0 +1,30 @@
+.order-container {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  z-index: 9999999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dark);
+  top: 0;
+}
+
+.order {
+  height: 80%;
+  min-width: 50%;
+}
+
+.order-location-container {
+  width: 80%;
+  height: 300px;
+  margin: 20px 0px;
+}
+
+.order-location {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

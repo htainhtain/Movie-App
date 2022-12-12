@@ -1,0 +1,10 @@
+/* imdb */
+.imdb-number {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.movie-imdb {
+  display: flex;
+  align-items: center;
+}

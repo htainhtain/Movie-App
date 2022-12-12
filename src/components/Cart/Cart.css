@@ -1,0 +1,46 @@
+.cart-container {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dark);
+  top: 0;
+}
+
+.cart {
+  height: 80%;
+  min-width: 50%;
+}
+
+.selected-movies-container {
+  max-height: 80%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.clear-shopping-cart-container {
+  margin: 20px 0px;
+  cursor: pointer;
+}
+
+.price-container,
+.order-product-container {
+  margin-top: 20px;
+}
+
+.order-product {
+  color: var(--color-text-dark);
+  background-color: var(--color-red-dark);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.order-product:hover {
+  box-shadow: rgba(169, 21, 21, 0.7) 0px 5px 15px;
+}

@@ -1,0 +1,19 @@
+.complete-container {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.home-description {
+  margin-left: 10px;
+}
+
+.home-icon-container{
+    display: flex;
+    align-items: center;
+    margin: 0px 20px;
+}
+
+.home-icon {
+  cursor: pointer;
+}

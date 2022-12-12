@@ -1,0 +1,23 @@
+#movie-gallery-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0px;
+}
+
+.movie-gallery-wrapper {
+  width: 80%;
+}
+
+.movie-gallery-title {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+
+.movie-gallery {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 45px;
+  flex-wrap: wrap;
+}

@@ -13,6 +13,8 @@ const Navbar = (props) => {
     props.setCartOpen(!props.cartOpen);
   };
 
+  console.log('inside navbar: ', props.priceUpperBound);
+
   const valuetext = (value) => {
     return `${value}$`;
   };

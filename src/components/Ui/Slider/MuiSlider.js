@@ -20,8 +20,8 @@ ValueLabelComponent.propTypes = {
 };
 
 export default function MuiSlider(props) {
+
   const handleSliderChange = (e, value) => {
-    // console.log("slider change", value);
     props.setPriceUpperBound(value);
   };
   return (
@@ -34,7 +34,7 @@ export default function MuiSlider(props) {
         }}
         aria-label="custom thumb label"
         value={props.priceUpperBound}
-        min={5}
+        min={2}
         max={10}
         onChange={handleSliderChange}
         sx={{

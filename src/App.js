@@ -19,7 +19,9 @@ function App() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
   const [orderOpen, setOrderOpen] = useState(false);
-  const [priceUpperBound, setPriceUpperBound] = useState(5);
+  const [priceUpperBound, setPriceUpperBound] = useState(10);
+
+  console.log('priceUpperBound: ', priceUpperBound)
 
   const [tabVal, setTabVal] = useState(0);
 
@@ -48,7 +50,6 @@ function App() {
     setTotalSelectedMovieCount(selectedMovie.length);
     let price = 0;
     selectedMovie.map((movie) => {
-      console.log(Math.round(movie.price));
       price = price + Math.round(movie.price);
     });
     setTotalMoviePrice(price);

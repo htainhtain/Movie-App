@@ -40,9 +40,9 @@ function a11yProps(index) {
 }
 
 export default function MuiTabs(props) {
-  const playingNowUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`;
-  const popularUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`;
-  const upComingUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`;
+  const playingNowUrl = `${process.env.REACT_APP_TMDB_URL}now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`;
+  const popularUrl = `${process.env.REACT_APP_TMDB_URL}popular?api_key=${process.env.REACT_APP_TMDB_KEY}`;
+  const upComingUrl = `${process.env.REACT_APP_TMDB_URL}upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&query=`;
 
   const searchBar = document.querySelector(".search-bar-input");
@@ -85,8 +85,8 @@ export default function MuiTabs(props) {
           isLoading={props.isLoading}
           setIsLoading={props.setIsLoading}
           heroImageUrl={props.heroImageUrl}
-          setSelectedMovie={props.setSelectedMovie}
-          selectedMovie={props.selectedMovie}
+          selectedMoviesState={props.selectedMoviesState}
+          selectedMoviedispatch={props.selectedMoviedispatch}
           movieUrl={playingNowUrl}
           movieIndex={props.movieIndex}
           getMovieTrailer={props.getMovieTrailer}
@@ -102,8 +102,8 @@ export default function MuiTabs(props) {
           isLoading={props.isLoading}
           setIsLoading={props.setIsLoading}
           heroImageUrl={props.heroImageUrl}
-          setSelectedMovie={props.setSelectedMovie}
-          selectedMovie={props.selectedMovie}
+          selectedMoviesState={props.selectedMoviesState}
+          selectedMoviedispatch={props.selectedMoviedispatch}
           movieUrl={popularUrl}
           movieIndex={props.movieIndex}
           getMovieTrailer={props.getMovieTrailer}
@@ -119,8 +119,8 @@ export default function MuiTabs(props) {
           isLoading={props.isLoading}
           setIsLoading={props.setIsLoading}
           heroImageUrl={props.heroImageUrl}
-          setSelectedMovie={props.setSelectedMovie}
-          selectedMovie={props.selectedMovie}
+          selectedMoviesState={props.selectedMoviesState}
+          selectedMoviedispatch={props.selectedMoviedispatch}
           movieUrl={upComingUrl}
           movieIndex={props.movieIndex}
           getMovieTrailer={props.getMovieTrailer}
@@ -137,8 +137,8 @@ export default function MuiTabs(props) {
             isLoading={props.isLoading}
             setIsLoading={props.setIsLoading}
             heroImageUrl={props.heroImageUrl}
-            setSelectedMovie={props.setSelectedMovie}
-            selectedMovie={props.selectedMovie}
+            selectedMoviesState={props.selectedMoviesState}
+            selectedMoviedispatch={props.selectedMoviedispatch}
             movieUrl={searchUrl}
             movieIndex={props.movieIndex}
             getMovieTrailer={props.getMovieTrailer}

@@ -7,6 +7,9 @@ import axios from "axios";
 import "./MovieGallery.css";
 
 const MovieGallery = (props) => {
+  const { selectedMovies } = props.selectedMoviesState;
+  const searchKeyword = props.searchKeyword;
+
   const checkSelectedBefore = (movie) => {
     const prevSelectedItems = JSON.parse(
       localStorage.getItem("SelectedMovies") || "[]"
@@ -30,10 +33,11 @@ const MovieGallery = (props) => {
     };
     const isSelectedBefore = checkSelectedBefore(selectedMovie);
     if (!isSelectedBefore) {
-      const addedMovie = [...props.selectedMovie, selectedMovie];
+      const addedMovie = [...selectedMovies, selectedMovie];
       localStorage.setItem("SelectedMovies", JSON.stringify(addedMovie));
-      props.setSelectedMovie((prevState) => {
-        return [...prevState, selectedMovie];
+      props.selectedMoviedispatch({
+        type: "SELECTED_MOVIE_CHANGE",
+        selectedMovies: addedMovie,
       });
     }
   };
@@ -42,8 +46,8 @@ const MovieGallery = (props) => {
     props.setIsLoading(true);
 
     const fetchData = async () => {
-      let movieUrl = props.searchKeyword
-        ? props.movieUrl + props.searchKeyword
+      let movieUrl = searchKeyword
+        ? props.movieUrl + searchKeyword
         : props.movieUrl;
       const data = await axios.get(movieUrl);
       props.setMovies(data.data.results);
@@ -54,7 +58,7 @@ const MovieGallery = (props) => {
     fetchData().catch((err) => {
       console.log(err);
     });
-  }, [props.movieUrl, props.searchKeyword]);
+  }, [searchKeyword]);
 
   return (
     <section id="movie-gallery-container">
@@ -62,8 +66,9 @@ const MovieGallery = (props) => {
         <div className="movie-gallery-wrapper">
           <h2 className="movie-gallery-title">{props.title}</h2>
           <div className="movie-gallery">
-            {props.movies.map((movie, index) => {
-              if (Math.round(movie.vote_average) <= props.priceUpperBound) {
+            {props.movies
+              .filter((movie) => movie.vote_average <= props.priceUpperBound)
+              .map((movie, index) => {
                 return (
                   <Movie
                     key={index}
@@ -73,8 +78,7 @@ const MovieGallery = (props) => {
                     handleSelectMovie={handleSelectMovie}
                   />
                 );
-              }
-            })}
+              })}
           </div>
         </div>
       ) : (

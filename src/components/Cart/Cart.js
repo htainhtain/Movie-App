@@ -5,15 +5,19 @@ import Alert from "@mui/material/Alert";
 import "./Cart.css";
 
 const Cart = (props) => {
+  const { selectedMovies } = props.selectedMoviesState;
+  const { totalMoviePrice } = props.selectedMoviesState;
+  const { totalSelectedMovieCount } = props.selectedMoviesState;
+
   const handleClearShoppingCart = () => {
-    props.setSelectedMovie([]);
+    props.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
     localStorage.setItem("SelectedMovies", JSON.stringify([]));
   };
 
   const handleOrderProduct = () => {
     props.setCartOpen(false);
     props.setOrderOpen(true);
-    props.setSelectedMovie([]);
+    props.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
     localStorage.setItem("SelectedMovies", JSON.stringify([]));
   };
 
@@ -25,17 +29,16 @@ const Cart = (props) => {
   return (
     <div className="cart-container">
       <div className="cart">
-        {props.totalSelectedMovieCount < 4 ? (
+        {totalSelectedMovieCount < 4 ? (
           <Alert severity="info">
-            Buy {4 - props.totalSelectedMovieCount} items more to get 10%
-            discount.
+            Buy {4 - totalSelectedMovieCount} items more to get 10% discount.
           </Alert>
         ) : (
           <>
-            {props.totalSelectedMovieCount < 6 ? (
+            {totalSelectedMovieCount < 6 ? (
               <>
                 <Alert severity="info">
-                  Buy {6 - props.totalSelectedMovieCount} items more to get 20%
+                  Buy {6 - totalSelectedMovieCount} items more to get 20%
                   discount.
                 </Alert>
               </>
@@ -48,38 +51,35 @@ const Cart = (props) => {
         )}
 
         <div className="cart-title">
-          <h3>Total Selected movies {props.totalSelectedMovieCount}</h3>
+          <h3>Total Selected movies {totalSelectedMovieCount}</h3>
         </div>
         <div className="selected-movies-container">
-          {props.selectedMovie.map((selectedMovie, index) => {
+          {selectedMovies.map((selectedMovie, index) => {
             return (
               <SelectedMovieCard
                 key={index}
                 selectedMovieIndex={index}
-                selectedMovies={props.selectedMovie}
                 currentMovie={selectedMovie}
-                setSelectedMovie={props.setSelectedMovie}
-                selectedMovie={selectedMovie}
+                selectedMoviesState={props.selectedMoviesState}
+                selectedMoviedispatch={props.selectedMoviedispatch}
               />
             );
           })}
         </div>
-        {props.totalSelectedMovieCount !== 0 ? (
+        {totalSelectedMovieCount !== 0 ? (
           <>
             <div className="total-price-container price-container">
-              <p>Total price: ${props.totlaMoviePrice}</p>
+              <p>Total price: ${totalMoviePrice}</p>
             </div>
-            {props.totalSelectedMovieCount > 3 ? (
+            {totalMoviePrice > 3 ? (
               <div className="discount-price-container price-container">
                 <p>
                   After discount: ${" "}
-                  {props.totalSelectedMovieCount > 3
-                    ? props.totalSelectedMovieCount > 5
-                      ? props.totlaMoviePrice -
-                        (props.totlaMoviePrice * 20) / 100
-                      : props.totlaMoviePrice -
-                        (props.totlaMoviePrice * 10) / 100
-                    : props.totlaMoviePrice}
+                  {totalSelectedMovieCount > 3
+                    ? totalSelectedMovieCount > 5
+                      ? totalMoviePrice - (totalMoviePrice * 20) / 100
+                      : totalMoviePrice - (totalMoviePrice * 10) / 100
+                    : totalMoviePrice}
                 </p>
               </div>
             ) : (

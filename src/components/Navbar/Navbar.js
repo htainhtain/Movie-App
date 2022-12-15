@@ -13,11 +13,7 @@ const Navbar = (props) => {
     props.setCartOpen(!props.cartOpen);
   };
 
-  console.log('inside navbar: ', props.priceUpperBound);
-
-  const valuetext = (value) => {
-    return `${value}$`;
-  };
+  const { totalSelectedMovieCount } = props.selectedMoviesState;
 
   return (
     <header className="nav-bar-container">
@@ -47,7 +43,7 @@ const Navbar = (props) => {
           >
             <ShoppingCart />
             <div className="nav-bar-shopping-cart-count">
-              {props.totalSelectedMovieCount}
+              {totalSelectedMovieCount}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import axios from "axios";
 
@@ -10,28 +10,80 @@ import Order from "./components/Order/Order";
 
 // import './App.css'
 
+const selectedMovieReducer = (prevState, action) => {
+  if (action.type === "SELECTED_MOVIE_CHANGE") {
+    const selectedMovies = action.selectedMovies;
+    const totalSelectedMoviesCount = action.selectedMovies.length;
+    let moviePrice = 0;
+    selectedMovies.forEach((movie) => {
+      moviePrice = moviePrice + Math.round(movie.price);
+    });
+    return {
+      selectedMovies: selectedMovies,
+      totalSelectedMovieCount: totalSelectedMoviesCount,
+      totalMoviePrice: moviePrice,
+    };
+  }
+  if (action.type === "SELECTED_MOVIE_DELETED") {
+    const newSelectedMovies = prevState.selectedMovies.filter(
+      (element) => !action.movieToDelete.includes(element)
+    );
+    const totalSelectedMoviesCount = newSelectedMovies.length;
+    let moviePrice = 0;
+    newSelectedMovies.forEach((movie) => {
+      moviePrice = moviePrice + Math.round(movie.price);
+    });
+    return {
+      selectedMovies: newSelectedMovies,
+      totalSelectedMovieCount: totalSelectedMoviesCount,
+      totalMoviePrice: moviePrice,
+    };
+  }
+  if (action.type === "CLEAR_SELECTED_MOVIE") {
+    const newSelectedMovies = [];
+    const totalSelectedMoviesCount = 0;
+    let moviePrice = 0;
+    return {
+      selectedMovies: newSelectedMovies,
+      totalSelectedMovieCount: totalSelectedMoviesCount,
+      totalMoviePrice: moviePrice,
+    };
+  }
+};
+
 function App() {
+  //usestate states
   const [movies, setMovies] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [trailerKey, setTrailerKey] = useState("");
-  const [totalSelectedMovieCount, setTotalSelectedMovieCount] = useState(0);
-  const [totlaMoviePrice, setTotalMoviePrice] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
   const [orderOpen, setOrderOpen] = useState(false);
   const [priceUpperBound, setPriceUpperBound] = useState(10);
-
-  console.log('priceUpperBound: ', priceUpperBound)
-
   const [tabVal, setTabVal] = useState(0);
 
-  const selectedMovieInStorage = JSON.parse(
-    localStorage.getItem("SelectedMovies") || "[]"
+  //useReducer states
+  const [selectedMoviesState, selectedMoviedispatch] = useReducer(
+    selectedMovieReducer,
+    {
+      selectedMovies: [],
+      totalSelectedMovieCount: 0,
+      totalMoviePrice: 0,
+    }
   );
-  const [selectedMovie, setSelectedMovie] = useState(selectedMovieInStorage);
+
+  useEffect(() => {
+    const selectedMovieInStorage = JSON.parse(
+      localStorage.getItem("SelectedMovies") || "[]"
+    );
+    selectedMoviedispatch({
+      type: "SELECTED_MOVIE_CHANGE",
+      selectedMovies: selectedMovieInStorage,
+    });
+  }, []);
 
   const movieIndex = 3;
-  const nowPlayingMovieUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`;
+  // const nowPlayingMovieUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`;
   const heroImageUrl = `https://image.tmdb.org/t/p/original`;
 
   const getMovieTrailer = (moveId) => {
@@ -47,17 +99,10 @@ function App() {
   };
 
   useEffect(() => {
-    setTotalSelectedMovieCount(selectedMovie.length);
-    let price = 0;
-    selectedMovie.map((movie) => {
-      price = price + Math.round(movie.price);
-    });
-    setTotalMoviePrice(price);
-  }, [selectedMovie]);
-
-  useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get(nowPlayingMovieUrl);
+      const data = await axios.get(
+        `${process.env.REACT_APP_TMDB_URL}now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`
+      );
       setMovies(data.data.results);
       getMovieTrailer(data.data.results[movieIndex].id);
       setIsLoading(false);
@@ -66,7 +111,7 @@ function App() {
     fetchData().catch((err) => {
       console.log(err);
     });
-  }, [nowPlayingMovieUrl]);
+  }, []);
 
   useEffect(() => {
     if (cartOpen) {
@@ -91,7 +136,7 @@ function App() {
   return (
     <div className="app">
       <Navbar
-        totalSelectedMovieCount={totalSelectedMovieCount}
+        selectedMoviesState={selectedMoviesState}
         setSearchKeyword={setSearchKeyword}
         setTabVal={setTabVal}
         setCartOpen={setCartOpen}
@@ -101,10 +146,8 @@ function App() {
       />
       {cartOpen ? (
         <Cart
-          totalSelectedMovieCount={totalSelectedMovieCount}
-          selectedMovie={selectedMovie}
-          setSelectedMovie={setSelectedMovie}
-          totlaMoviePrice={totlaMoviePrice}
+          selectedMoviesState={selectedMoviesState}
+          selectedMoviedispatch={selectedMoviedispatch}
           setCartOpen={setCartOpen}
           setOrderOpen={setOrderOpen}
         />
@@ -124,9 +167,9 @@ function App() {
         isLoading={isLoading}
         setIsLoading={setIsLoading}
         heroImageUrl={heroImageUrl}
-        setSelectedMovie={setSelectedMovie}
-        selectedMovie={selectedMovie}
-        nowPlayingMovieUrl={nowPlayingMovieUrl}
+        selectedMoviesState={selectedMoviesState}
+        selectedMoviedispatch={selectedMoviedispatch}
+        // nowPlayingMovieUrl={nowPlayingMovieUrl}
         setMovies={setMovies}
         getMovieTrailer={getMovieTrailer}
         movieIndex={movieIndex}

@@ -9,7 +9,7 @@ const Hero = (props) => {
     <section id="hero">
       {!props.isLoading ? (
         <>
-          <div className="hero-movie-image-wrapper">
+          <figure className="hero-movie-image-wrapper">
             <img
               className="hero-movie-image"
               src={`${props.heroImageUrl}${
@@ -17,11 +17,11 @@ const Hero = (props) => {
               }`}
               alt={`${props.movies[props.movieIndex].title}`}
             />
-          </div>
-          <HeroContent
-            movie={props.movies[props.movieIndex]}
-            trailerKey={props.trailerKey}
-          />
+            <HeroContent
+              movie={props.movies[props.movieIndex]}
+              trailerKey={props.trailerKey}
+            />
+          </figure>
         </>
       ) : (
         <></>

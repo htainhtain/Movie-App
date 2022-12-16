@@ -26,9 +26,9 @@ const Movie = (props) => {
 
   return (
     <MovieCard index={props.index}>
-      {!isloading ? (
+      {!isloading && (
         <>
-          <div className="movie-poster-container">
+          <figure className="movie-poster-container">
             <img
               className="movie-poster"
               src={`${props.heroImageUrl}${movie.poster_path}`}
@@ -40,17 +40,21 @@ const Movie = (props) => {
             >
               <AddShoppingCartIcon />
             </div>
-          </div>
+          </figure>
           <div className="each-movie-description">
-            <div className="movie-release-date">{movie.release_date}</div>
-            <h4 className="movie-original-title">{movie.original_title}</h4>
+            <time datetime={movie.release_date} className="movie-release-date">
+              {movie.release_date}
+            </time>
+            <header>
+              <h4 className="movie-original-title">{movie.original_title}</h4>
+            </header>
             <div className="imdb-price-container">
               <MovieImdb
                 voteAverage={movie.vote_average}
                 voteCount={movie.vote_count}
               />
               <div className="movie-price">
-                <span className="dollar-sign">$ </span> 
+                <span className="dollar-sign">$ </span>
                 {Math.round(movie.vote_average)}
               </div>
             </div>
@@ -61,8 +65,6 @@ const Movie = (props) => {
             </div>
           </div>
         </>
-      ) : (
-        <></>
       )}
     </MovieCard>
   );

@@ -10,9 +10,11 @@ const HeroContent = (props) => {
   const trailerUrl = `https://www.youtube.com/watch?v=`;
 
   return (
-    <div className="hero-content-container">
+    <figcaption className="hero-content-container">
       <div className="hero-content">
-        <h1 className="hero-title each-hero-content">{props.movie.title}</h1>
+        <header>
+          <h1 className="hero-title each-hero-content">{props.movie.title}</h1>
+        </header>
         <div className="movie-status-container each-hero-content">
           <MovieImdb
             voteAverage={props.movie.vote_average}
@@ -30,7 +32,7 @@ const HeroContent = (props) => {
           <span>WATCH TRAILER</span>
         </a>
       </div>
-    </div>
+    </figcaption>
   );
 };
 

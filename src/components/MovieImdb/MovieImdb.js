@@ -8,9 +8,9 @@ const MovieImdb = (props) => {
   return (
     <div className="movie-imdb">
       <ImdbImage />
-      <span className="imdb-number">
+      <p className="imdb-number">
         {props.voteAverage} / {props.voteCount}
-      </span>
+      </p>
     </div>
   );
 };

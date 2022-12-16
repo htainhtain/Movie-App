@@ -2,6 +2,8 @@
   width: 250px;
   height: 370px;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 .movie-poster {

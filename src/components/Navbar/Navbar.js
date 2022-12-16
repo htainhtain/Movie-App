@@ -16,28 +16,35 @@ const Navbar = (props) => {
   const { totalSelectedMovieCount } = props.selectedMoviesState;
 
   return (
-    <header className="nav-bar-container">
-      <div className="nav-bar">
+    <nav className="nav-bar-container">
+      <ul className="nav-bar">
         <div className="nav-bar-group">
-          <div className="nav-bar-logo-container circle-red-container">
+          <li className="nav-bar-logo-container circle-red-container">
             <Logo />
-          </div>
-          <div className="nav-bar-title-container">
-            <h2 className="nav-bar-title">Movie</h2>
-          </div>
+          </li>
+          <li>
+            <main>
+              <header className="nav-bar-title-container">
+                <h2 className="nav-bar-title">Movie</h2>
+              </header>
+            </main>
+          </li>
         </div>
-        <Searchbar
-          setSearchKeyword={props.setSearchKeyword}
-          setTabVal={props.setTabVal}
-        />
+        <li>
+          <Searchbar
+            setSearchKeyword={props.setSearchKeyword}
+            setTabVal={props.setTabVal}
+          />
+        </li>
+
         <div className="nav-bar-group">
-          <div className="price-range-slider-container">
+          <li className="price-range-slider-container">
             <MuiSlider
               priceUpperBound={props.priceUpperBound}
               setPriceUpperBound={props.setPriceUpperBound}
             />
-          </div>
-          <div
+          </li>
+          <li
             className="nav-bar-shopping-cart-container circle-red-container"
             onClick={handleShoppingCart}
           >
@@ -45,10 +52,10 @@ const Navbar = (props) => {
             <div className="nav-bar-shopping-cart-count">
               {totalSelectedMovieCount}
             </div>
-          </div>
+          </li>
         </div>
-      </div>
-    </header>
+      </ul>
+    </nav>
   );
 };
 

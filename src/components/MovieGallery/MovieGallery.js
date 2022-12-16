@@ -62,9 +62,11 @@ const MovieGallery = (props) => {
 
   return (
     <section id="movie-gallery-container">
-      {!props.isLoading ? (
+      {!props.isLoading && (
         <div className="movie-gallery-wrapper">
-          <h2 className="movie-gallery-title">{props.title}</h2>
+          <header>
+            <h2 className="movie-gallery-title">{props.title}</h2>
+          </header>
           <div className="movie-gallery">
             {props.movies
               .filter((movie) => movie.vote_average <= props.priceUpperBound)
@@ -81,8 +83,6 @@ const MovieGallery = (props) => {
               })}
           </div>
         </div>
-      ) : (
-        <></>
       )}
     </section>
   );

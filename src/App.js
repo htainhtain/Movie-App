@@ -144,17 +144,15 @@ function App() {
         priceUpperBound={priceUpperBound}
         setPriceUpperBound={setPriceUpperBound}
       />
-      {cartOpen ? (
+      {cartOpen && (
         <Cart
           selectedMoviesState={selectedMoviesState}
           selectedMoviedispatch={selectedMoviedispatch}
           setCartOpen={setCartOpen}
           setOrderOpen={setOrderOpen}
         />
-      ) : (
-        <></>
       )}
-      {orderOpen ? <Order setOrderOpen={setOrderOpen} /> : <></>}
+      {orderOpen && <Order setOrderOpen={setOrderOpen} />}
       <Hero
         movies={movies}
         isLoading={isLoading}
@@ -169,7 +167,6 @@ function App() {
         heroImageUrl={heroImageUrl}
         selectedMoviesState={selectedMoviesState}
         selectedMoviedispatch={selectedMoviedispatch}
-        // nowPlayingMovieUrl={nowPlayingMovieUrl}
         setMovies={setMovies}
         getMovieTrailer={getMovieTrailer}
         movieIndex={movieIndex}

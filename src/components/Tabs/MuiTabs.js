@@ -9,6 +9,7 @@ import MovieGallery from "../MovieGallery/MovieGallery";
 import SearchPlaceholder from "./SearchPlacholder/SearchPlaceholder";
 
 import "./MuiTabs.css";
+import { movieContext } from "../../context/movie-context";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,10 +41,14 @@ function a11yProps(index) {
 }
 
 export default function MuiTabs(props) {
+  //context
+  const context = React.useContext(movieContext);
+
   const playingNowUrl = `${process.env.REACT_APP_TMDB_URL}now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`;
   const popularUrl = `${process.env.REACT_APP_TMDB_URL}popular?api_key=${process.env.REACT_APP_TMDB_KEY}`;
   const upComingUrl = `${process.env.REACT_APP_TMDB_URL}upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&query=`;
+  const heroImageUrl = `https://image.tmdb.org/t/p/original`;
 
   const searchBar = document.querySelector(".search-bar-input");
 
@@ -80,16 +85,16 @@ export default function MuiTabs(props) {
       <TabPanel value={props.tabVal} index={0}>
         <MovieGallery
           title="Now playing"
-          movies={props.movies}
-          setMovies={props.setMovies}
-          isLoading={props.isLoading}
-          setIsLoading={props.setIsLoading}
-          heroImageUrl={props.heroImageUrl}
-          selectedMoviesState={props.selectedMoviesState}
-          selectedMoviedispatch={props.selectedMoviedispatch}
+          movies={context.movies}
+          setMovies={context.setMovies}
+          isLoading={context.isLoading}
+          setIsLoading={context.setIsLoading}
+          heroImageUrl={heroImageUrl}
+          selectedMoviesState={context.selectedMoviesState}
+          selectedMoviedispatch={context.selectedMoviedispatch}
           movieUrl={playingNowUrl}
-          movieIndex={props.movieIndex}
-          getMovieTrailer={props.getMovieTrailer}
+          movieIndex={context.movieIndex}
+          getMovieTrailer={context.getMovieTrailer}
           tabVal={props.tabVal}
           priceUpperBound={props.priceUpperBound}
         />
@@ -97,16 +102,16 @@ export default function MuiTabs(props) {
       <TabPanel value={props.tabVal} index={1}>
         <MovieGallery
           title="Popular"
-          movies={props.movies}
-          setMovies={props.setMovies}
-          isLoading={props.isLoading}
-          setIsLoading={props.setIsLoading}
-          heroImageUrl={props.heroImageUrl}
-          selectedMoviesState={props.selectedMoviesState}
-          selectedMoviedispatch={props.selectedMoviedispatch}
+          movies={context.movies}
+          setMovies={context.setMovies}
+          isLoading={context.isLoading}
+          setIsLoading={context.setIsLoading}
+          heroImageUrl={heroImageUrl}
+          selectedMoviesState={context.selectedMoviesState}
+          selectedMoviedispatch={context.selectedMoviedispatch}
           movieUrl={popularUrl}
-          movieIndex={props.movieIndex}
-          getMovieTrailer={props.getMovieTrailer}
+          movieIndex={context.movieIndex}
+          getMovieTrailer={context.getMovieTrailer}
           tabVal={props.tabVal}
           priceUpperBound={props.priceUpperBound}
         />
@@ -114,16 +119,16 @@ export default function MuiTabs(props) {
       <TabPanel value={props.tabVal} index={2}>
         <MovieGallery
           title="Up coming.."
-          movies={props.movies}
-          setMovies={props.setMovies}
-          isLoading={props.isLoading}
-          setIsLoading={props.setIsLoading}
-          heroImageUrl={props.heroImageUrl}
-          selectedMoviesState={props.selectedMoviesState}
-          selectedMoviedispatch={props.selectedMoviedispatch}
+          movies={context.movies}
+          setMovies={context.setMovies}
+          isLoading={context.isLoading}
+          setIsLoading={context.setIsLoading}
+          heroImageUrl={heroImageUrl}
+          selectedMoviesState={context.selectedMoviesState}
+          selectedMoviedispatch={context.selectedMoviedispatch}
           movieUrl={upComingUrl}
-          movieIndex={props.movieIndex}
-          getMovieTrailer={props.getMovieTrailer}
+          movieIndex={context.movieIndex}
+          getMovieTrailer={context.getMovieTrailer}
           tabVal={props.tabVal}
           priceUpperBound={props.priceUpperBound}
         />
@@ -132,16 +137,16 @@ export default function MuiTabs(props) {
         {props.searchKeyword ? (
           <MovieGallery
             title={`Results for ${props.searchKeyword}`}
-            movies={props.movies}
-            setMovies={props.setMovies}
-            isLoading={props.isLoading}
-            setIsLoading={props.setIsLoading}
-            heroImageUrl={props.heroImageUrl}
-            selectedMoviesState={props.selectedMoviesState}
-            selectedMoviedispatch={props.selectedMoviedispatch}
+            movies={context.movies}
+            setMovies={context.setMovies}
+            isLoading={context.isLoading}
+            setIsLoading={context.setIsLoading}
+            heroImageUrl={heroImageUrl}
+            selectedMoviesState={context.selectedMoviesState}
+            selectedMoviedispatch={context.selectedMoviedispatch}
             movieUrl={searchUrl}
-            movieIndex={props.movieIndex}
-            getMovieTrailer={props.getMovieTrailer}
+            movieIndex={context.movieIndex}
+            getMovieTrailer={context.getMovieTrailer}
             searchKeyword={props.searchKeyword}
             tabVal={props.tabVal}
             priceUpperBound={props.priceUpperBound}

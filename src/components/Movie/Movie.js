@@ -42,7 +42,7 @@ const Movie = (props) => {
             </div>
           </figure>
           <div className="each-movie-description">
-            <time datetime={movie.release_date} className="movie-release-date">
+            <time dateTime={movie.release_date} className="movie-release-date">
               {movie.release_date}
             </time>
             <header>

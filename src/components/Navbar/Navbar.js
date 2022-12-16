@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import "./Navbar.css";
+import { movieContext } from "../../context/movie-context";
 
 import Logo from "../Ui/Icons/Logo";
 import ShoppingCart from "../Ui/Icons/ShoppingCart";
 import Searchbar from "./Searchbar/Searchbar";
-
 import MuiSlider from "../Ui/Slider/MuiSlider";
 
+import "./Navbar.css";
+
 const Navbar = (props) => {
+  const context = useContext(movieContext);
+
   const handleShoppingCart = (e) => {
     props.setCartOpen(!props.cartOpen);
   };
 
-  const { totalSelectedMovieCount } = props.selectedMoviesState;
+  const { totalSelectedMovieCount } = context.selectedMoviesState;
 
   return (
     <nav className="nav-bar-container">

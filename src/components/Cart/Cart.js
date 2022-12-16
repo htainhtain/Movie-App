@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+
+import { movieContext } from "../../context/movie-context";
+
 import SelectedMovieCard from "../Ui/SelectedMovieCard/SelectedMovieCard";
 import Alert from "@mui/material/Alert";
 
 import "./Cart.css";
 
 const Cart = (props) => {
-  const { selectedMovies } = props.selectedMoviesState;
-  const { totalMoviePrice } = props.selectedMoviesState;
-  const { totalSelectedMovieCount } = props.selectedMoviesState;
+  const context = useContext(movieContext);
+
+  const { selectedMovies } = context.selectedMoviesState;
+  const { totalMoviePrice } = context.selectedMoviesState;
+  const { totalSelectedMovieCount } = context.selectedMoviesState;
 
   const handleClearShoppingCart = () => {
     props.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
@@ -60,8 +65,8 @@ const Cart = (props) => {
                 key={index}
                 selectedMovieIndex={index}
                 currentMovie={selectedMovie}
-                selectedMoviesState={props.selectedMoviesState}
-                selectedMoviedispatch={props.selectedMoviedispatch}
+                selectedMoviesState={context.selectedMoviesState}
+                selectedMoviedispatch={context.selectedMoviedispatch}
               />
             );
           })}

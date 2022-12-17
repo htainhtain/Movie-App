@@ -8,21 +8,24 @@ import "./MovieGallery.css";
 
 const MovieGallery = (props) => {
   const { selectedMovies } = props.selectedMoviesState;
+  const movieIndex = props.movieIndex;
+  const movieUrlProp = props.movieUrl;
+  const setMovies = props.setMovies;
+  const getMovieTrailer = props.getMovieTrailer;
+  const setIsLoading = props.setIsLoading;
+
   const searchKeyword = props.searchKeyword;
 
   const checkSelectedBefore = (movie) => {
-    const prevSelectedItems = JSON.parse(
-      localStorage.getItem("SelectedMovies") || "[]"
-    );
-    if (prevSelectedItems.filter((e) => e.id === movie.id).length > 0) {
+    const prevSelectedItems = props.selectedMoviesState.selectedMovies;
+    if (prevSelectedItems.filter((item) => item.id === movie.id).length > 0) {
       return true;
     }
     return false;
   };
 
-  const handleSelectMovie = (e) => {
-    const movieParent = e.currentTarget.parentElement.parentElement;
-    const movieIndex = movieParent.getAttribute("index");
+  const handleSelectMovie = (index) => {
+    const movieIndex = index;
     const movieId = props.movies[movieIndex].id;
     const movieName = props.movies[movieIndex].original_title;
     const moviePrice = props.movies[movieIndex].vote_average;
@@ -34,7 +37,6 @@ const MovieGallery = (props) => {
     const isSelectedBefore = checkSelectedBefore(selectedMovie);
     if (!isSelectedBefore) {
       const addedMovie = [...selectedMovies, selectedMovie];
-      localStorage.setItem("SelectedMovies", JSON.stringify(addedMovie));
       props.selectedMoviedispatch({
         type: "SELECTED_MOVIE_CHANGE",
         selectedMovies: addedMovie,
@@ -43,22 +45,22 @@ const MovieGallery = (props) => {
   };
 
   useEffect(() => {
-    props.setIsLoading(true);
+    setIsLoading(true);
 
     const fetchData = async () => {
       let movieUrl = searchKeyword
-        ? props.movieUrl + searchKeyword
-        : props.movieUrl;
+        ? movieUrlProp + searchKeyword
+        : movieUrlProp;
       const data = await axios.get(movieUrl);
-      props.setMovies(data.data.results);
-      props.getMovieTrailer(data.data.results[props.movieIndex].id);
-      props.setIsLoading(false);
+      setMovies(data.data.results);
+      getMovieTrailer(data.data.results[movieIndex].id);
+      setIsLoading(false);
     };
 
     fetchData().catch((err) => {
       console.log(err);
     });
-  }, [searchKeyword]);
+  }, []);
 
   return (
     <section id="movie-gallery-container">
@@ -77,7 +79,9 @@ const MovieGallery = (props) => {
                     index={index}
                     movie={movie}
                     heroImageUrl={props.heroImageUrl}
-                    handleSelectMovie={handleSelectMovie}
+                    handleSelectMovie={() => {
+                      handleSelectMovie(index);
+                    }}
                   />
                 );
               })}

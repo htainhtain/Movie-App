@@ -5,19 +5,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./SelectedMovieCard.css";
 
 const SelectedMovieCard = (props) => {
-  const { selectedMovies } = props.selectedMoviesState;
 
   const deleteMovie = () => {
     const movieToDelete = [props.currentMovie];
-    const newSelectedMovies = selectedMovies.filter(
-      (element) => !movieToDelete.includes(element)
-    );
     props.selectedMoviedispatch({
       type: "SELECTED_MOVIE_DELETED",
       movieToDelete: movieToDelete,
     });
-    // props.setSelectedMovie(newSelectedMovies);
-    localStorage.setItem("SelectedMovies", JSON.stringify(newSelectedMovies));
   };
 
   return (

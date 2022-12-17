@@ -15,24 +15,22 @@ const Cart = (props) => {
   const { totalSelectedMovieCount } = context.selectedMoviesState;
 
   const handleClearShoppingCart = () => {
-    props.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
-    localStorage.setItem("SelectedMovies", JSON.stringify([]));
+    context.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
   };
 
   const handleOrderProduct = () => {
     props.setCartOpen(false);
     props.setOrderOpen(true);
-    props.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
-    localStorage.setItem("SelectedMovies", JSON.stringify([]));
+    context.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
   };
 
   useEffect(() => {
-    const cartContainer = document.querySelector(".cart-container");
+    const cartContainer = document.querySelector("#cart-container");
     cartContainer.style.top = `${document.documentElement.scrollTop}px`;
   }, []);
 
   return (
-    <div className="cart-container">
+    <section id="cart-container">
       <div className="cart">
         {totalSelectedMovieCount < 4 ? (
           <Alert severity="info">
@@ -55,28 +53,26 @@ const Cart = (props) => {
           </>
         )}
 
-        <div className="cart-title">
+        <header className="cart-title">
           <h3>Total Selected movies {totalSelectedMovieCount}</h3>
-        </div>
+        </header>
         <div className="selected-movies-container">
           {selectedMovies.map((selectedMovie, index) => {
             return (
               <SelectedMovieCard
                 key={index}
-                selectedMovieIndex={index}
                 currentMovie={selectedMovie}
-                selectedMoviesState={context.selectedMoviesState}
                 selectedMoviedispatch={context.selectedMoviedispatch}
               />
             );
           })}
         </div>
-        {totalSelectedMovieCount !== 0 ? (
+        {totalSelectedMovieCount !== 0 && (
           <>
             <div className="total-price-container price-container">
               <p>Total price: ${totalMoviePrice}</p>
             </div>
-            {totalMoviePrice > 3 ? (
+            {totalMoviePrice > 3 && (
               <div className="discount-price-container price-container">
                 <p>
                   After discount: ${" "}
@@ -87,8 +83,6 @@ const Cart = (props) => {
                     : totalMoviePrice}
                 </p>
               </div>
-            ) : (
-              <></>
             )}
             <div className="order-product-container">
               <button className="order-product" onClick={handleOrderProduct}>
@@ -102,11 +96,9 @@ const Cart = (props) => {
               <span>Clear shopping cart</span>
             </div>
           </>
-        ) : (
-          <></>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

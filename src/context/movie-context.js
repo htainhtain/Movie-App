@@ -33,6 +33,7 @@ const selectedMovieReducer = (prevState, action) => {
       (element) => !action.movieToDelete.includes(element)
     );
     const totalSelectedMoviesCount = newSelectedMovies.length;
+    localStorage.setItem("SelectedMovies", JSON.stringify(newSelectedMovies));
     let moviePrice = 0;
     newSelectedMovies.forEach((movie) => {
       moviePrice = moviePrice + Math.round(movie.price);
@@ -46,6 +47,7 @@ const selectedMovieReducer = (prevState, action) => {
   if (action.type === "CLEAR_SELECTED_MOVIE") {
     const newSelectedMovies = [];
     const totalSelectedMoviesCount = 0;
+    localStorage.setItem("SelectedMovies", JSON.stringify([]));
     let moviePrice = 0;
     return {
       selectedMovies: newSelectedMovies,

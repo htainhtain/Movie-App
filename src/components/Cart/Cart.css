@@ -5,15 +5,17 @@
   position: absolute;
   z-index: 9999;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   color: var(--color-text-dark);
   top: 0;
+  padding: 150px 0px;
 }
 
 .cart {
-  height: 80%;
+  height: 40%;
   min-width: 50%;
+  /* padding: 10px 0px; */
 }
 
 .selected-movies-container {

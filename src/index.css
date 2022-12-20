@@ -38,3 +38,12 @@ p {
   --color-light-greyish-blue-dark: hsl(234, 39%, 85%);
   --color-light-greyish-blue-hover-dark: hsl(240, 2%, 52%);
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: transparent;
+  -webkit-box-shadow: 0 0 0 30px rgba(9, 12, 16, 0.5) inset !important;
+  font-family: "Orbitron", sans-serif;
+}

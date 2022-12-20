@@ -1,7 +1,7 @@
 .nav-bar-container {
   position: fixed;
   top: 0;
-  height: 80px;
+  padding: 5px 0;
   width: 100%;
   z-index: 999999;
   color: var(--color-text-dark);
@@ -16,7 +16,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* display: gird;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center; */
   list-style-type: none;
+  padding: 0;
+  transition: height ease-in 0.5s;
+}
+
+.nav-bar.mobile {
+  display: grid;
+  grid-template-areas:
+    "logo search-bar menu"
+    "slider slider slider";
+  row-gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+.nav-bar.mobile .nav-bar-group.fifth-group {
+  display: block;
+  justify-self: center;
+}
+
+.first-group {
+  grid-area: logo;
+}
+
+.second-group {
+  grid-area: search-bar;
+}
+
+.fourth-group {
+  grid-area: menu;
+}
+
+.fifth-group {
+  grid-area: slider;
 }
 
 .nav-bar-group {
@@ -34,10 +71,12 @@
 .circle-red-container {
   background-color: var(--color-red-dark);
   border-radius: 50%;
-  padding: 10px;
+  padding: 13px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 25px;
+  height: 25px;
 }
 
 .nav-bar-title {
@@ -46,10 +85,8 @@
 }
 
 .nav-bar-shopping-cart-container {
-  width: 36px;
-  height: 36px;
   position: relative;
-  margin-left: 10px;
+  /* left: 10px; */
   cursor: pointer;
   transform-origin: center;
   transition: box-shadow ease 0.2s;
@@ -72,15 +109,44 @@
 
 .price-range-slider-container {
   width: 150px;
+  margin-right: 10px;
 }
 
 .nav-bar-shopping-cart-container {
   margin-left: 10px;
 }
 
+.nav-bar-group.fourth-group,
+.nav-bar-group.fifth-group {
+  display: none;
+}
+
+.nav-bar-menu {
+  cursor: pointer;
+}
+
 /* media query */
 @media (max-width: 968px) {
+  .nav-bar-container {
+    padding: 10px 0;
+  }
+
   .nav-bar-logo-container {
     display: none;
+  }
+
+  .nav-bar {
+    width: 100%;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0px 15px;
+  }
+
+  .nav-bar-group.third-group {
+    display: none;
+  }
+
+  .nav-bar-group.fourth-group {
+    display: block;
   }
 }

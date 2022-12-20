@@ -23,7 +23,7 @@ const Searchbar = (props) => {
         <input
           id="field1"
           autocomplete="do-not-autofill"
-          type="text"
+          type="search"
           placeholder="What do you want to watch?"
           name="search"
           className="search-bar-input"

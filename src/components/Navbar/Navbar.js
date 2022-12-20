@@ -73,14 +73,17 @@ const Navbar = (props) => {
               setPriceUpperBound={props.setPriceUpperBound}
             />
           </li>
-          <li
-            className="nav-bar-shopping-cart-container circle-red-container"
-            onClick={handleShoppingCart}
-          >
-            <ShoppingCart />
-            <div className="nav-bar-shopping-cart-count">
-              {totalSelectedMovieCount}
-            </div>
+          <li>
+            <button
+              type="button"
+              className="nav-bar-shopping-cart-container circle-red-container"
+              onClick={handleShoppingCart}
+            >
+              <ShoppingCart />
+              <div className="nav-bar-shopping-cart-count">
+                {totalSelectedMovieCount}
+              </div>
+            </button>
           </li>
         </div>
         <div className="nav-bar-group fourth-group">
@@ -95,14 +98,17 @@ const Navbar = (props) => {
               setPriceUpperBound={props.setPriceUpperBound}
             />
           </li>
-          <li
-            className="nav-bar-shopping-cart-container circle-red-container"
-            onClick={handleShoppingCart}
-          >
-            <ShoppingCart />
-            <div className="nav-bar-shopping-cart-count">
-              {totalSelectedMovieCount}
-            </div>
+          <li>
+            <button
+              type="button"
+              className="nav-bar-shopping-cart-container circle-red-container"
+              onClick={handleShoppingCart}
+            >
+              <ShoppingCart />
+              <div className="nav-bar-shopping-cart-count">
+                {totalSelectedMovieCount}
+              </div>
+            </button>
           </li>
         </div>
       </ul>

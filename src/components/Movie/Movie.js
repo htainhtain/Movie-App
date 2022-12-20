@@ -34,12 +34,13 @@ const Movie = (props) => {
               src={`${props.heroImageUrl}${movie.poster_path}`}
               alt={`${movie.title}`}
             />
-            <div
+            <button
+              type="button"
               className="add-to-cart-icon-container"
               onClick={props.handleSelectMovie}
             >
               <AddShoppingCartIcon />
-            </div>
+            </button>
           </figure>
           <div className="each-movie-description">
             <time dateTime={movie.release_date} className="movie-release-date">

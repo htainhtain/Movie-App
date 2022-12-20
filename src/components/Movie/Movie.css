@@ -24,6 +24,7 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color ease 0.2s;
+  border: 0px;
 }
 
 .imdb-price-container {

@@ -35,10 +35,6 @@ const Navbar = (props) => {
     // console.log(window.innerWidth)
   }, [windowSize]);
 
-  const handleShoppingCart = (e) => {
-    props.setCartOpen(!props.cartOpen);
-  };
-
   const { totalSelectedMovieCount } = context.selectedMoviesState;
 
   const menuHandler = (e) => {
@@ -77,7 +73,7 @@ const Navbar = (props) => {
             <button
               type="button"
               className="nav-bar-shopping-cart-container circle-red-container"
-              onClick={handleShoppingCart}
+              onClick={props.cartOpenHandler}
             >
               <ShoppingCart />
               <div className="nav-bar-shopping-cart-count">
@@ -102,7 +98,7 @@ const Navbar = (props) => {
             <button
               type="button"
               className="nav-bar-shopping-cart-container circle-red-container"
-              onClick={handleShoppingCart}
+              onClick={props.cartOpenHandler}
             >
               <ShoppingCart />
               <div className="nav-bar-shopping-cart-count">

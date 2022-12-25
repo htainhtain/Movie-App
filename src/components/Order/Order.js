@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
+import Modal from "../Ui/Modal/Modal";
+// import ModalOrder from "../Ui/Modal/ModalOrder";
 import CountdownTimer from "./Countdown/CountdownTimer";
 
 import "./Order.css";
 
 const Order = (props) => {
-  useEffect(() => {
-    const orderContainer = document.querySelector(".order-container");
-    orderContainer.style.top = `${document.documentElement.scrollTop}px`;
-  }, []);
-
   return (
-    <div className="order-container">
+    <Modal closeHandler={props.orderCloseHandler}>
       <div className="order">
         <div className="order-description">
           <h3>Delivering to this location</h3>
@@ -31,7 +28,7 @@ const Order = (props) => {
           <CountdownTimer setOrderOpen={props.setOrderOpen} />
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 

@@ -22,7 +22,7 @@ const Searchbar = (props) => {
       <form className="search-bar-form" onSubmit={handleSearch}>
         <input
           id="field1"
-          autocomplete="do-not-autofill"
+          autoComplete="do-not-autofill"
           type="search"
           placeholder="What do you want to watch?"
           name="search"

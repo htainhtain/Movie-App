@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { movieContext } from "../../context/movie-context";
 
@@ -6,6 +6,7 @@ import SelectedMovieCard from "../Ui/SelectedMovieCard/SelectedMovieCard";
 import Alert from "@mui/material/Alert";
 
 import "./Cart.css";
+import Modal from "../Ui/Modal/Modal";
 
 const Cart = (props) => {
   const context = useContext(movieContext);
@@ -19,19 +20,14 @@ const Cart = (props) => {
   };
 
   const handleOrderProduct = () => {
-    props.setCartOpen(false);
-    props.setOrderOpen(true);
+    props.cartCloseHandler();
+    props.orderOpenHandler();
     context.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
   };
 
-  useEffect(() => {
-    const cartContainer = document.querySelector("#cart-container");
-    cartContainer.style.top = `${document.documentElement.scrollTop}px`;
-  }, []);
-
   return (
-    <section id="cart-container">
-      <div className="cart">
+    <Modal closeHandler={props.cartCloseHandler}>
+      <section id="cart">
         {totalSelectedMovieCount < 4 ? (
           <Alert severity="info">
             Buy {4 - totalSelectedMovieCount} items more to get 10% discount.
@@ -97,8 +93,8 @@ const Cart = (props) => {
             </div>
           </>
         )}
-      </div>
-    </section>
+      </section>
+    </Modal>
   );
 };
 

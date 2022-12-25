@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import { movieContext } from "./context/movie-context";
 
 import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
 import MuiTabs from "./components/Tabs/MuiTabs";
 import Cart from "./components/Cart/Cart";
 import Order from "./components/Order/Order";
-
-import { movieContext } from "./context/movie-context";
-
-// import './App.css'
 
 function App() {
   //context
@@ -50,20 +48,38 @@ function App() {
     setTabVal(value);
   };
 
+  const cartOpenHandler = () => {
+    setCartOpen(true);
+  };
+
+  const cartCloseHandler = () => {
+    setCartOpen(false);
+  };
+
+  const orderOpenHandler = () => {
+    setOrderOpen(true);
+  };
+
+  const orderCloseHandler = () => {
+    setOrderOpen(false);
+  };
+
   return (
     <div className="app">
       <Navbar
         setSearchKeyword={setSearchKeyword}
         setTabVal={setTabVal}
-        setCartOpen={setCartOpen}
-        cartOpen={cartOpen}
+        cartOpenHandler={cartOpenHandler}
         priceUpperBound={priceUpperBound}
         setPriceUpperBound={setPriceUpperBound}
       />
       {cartOpen && (
-        <Cart setCartOpen={setCartOpen} setOrderOpen={setOrderOpen} />
+        <Cart
+          cartCloseHandler={cartCloseHandler}
+          orderOpenHandler={orderOpenHandler}
+        />
       )}
-      {orderOpen && <Order setOrderOpen={setOrderOpen} />}
+      {orderOpen && <Order orderCloseHandler={orderCloseHandler} />}
       <Hero />
       <MuiTabs
         searchKeyword={searchKeyword}

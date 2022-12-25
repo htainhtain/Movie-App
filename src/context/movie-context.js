@@ -22,6 +22,7 @@ const selectedMovieReducer = (prevState, action) => {
     selectedMovies.forEach((movie) => {
       moviePrice = moviePrice + Math.round(movie.price);
     });
+    localStorage.setItem("SelectedMovies", JSON.stringify(selectedMovies));
     return {
       selectedMovies: selectedMovies,
       totalSelectedMovieCount: totalSelectedMoviesCount,

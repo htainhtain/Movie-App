@@ -4,7 +4,7 @@
 }
 
 .selected-movies-container {
-  max-height: 80%;
+  max-height: 30em;
   overflow: hidden;
   overflow-y: scroll;
 }

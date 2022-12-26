@@ -64,6 +64,10 @@ function App() {
     setOrderOpen(false);
   };
 
+  const clearShoppingCart = () => {
+    context.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
+  };
+
   return (
     <div className="app">
       <Navbar
@@ -77,6 +81,7 @@ function App() {
         <Cart
           cartCloseHandler={cartCloseHandler}
           orderOpenHandler={orderOpenHandler}
+          clearShoppingCart={clearShoppingCart}
         />
       )}
       {orderOpen && <Order orderCloseHandler={orderCloseHandler} />}

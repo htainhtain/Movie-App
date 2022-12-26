@@ -10,4 +10,7 @@
   color: var(--color-text-dark);
   top: 0;
   padding: 150px 0px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
+

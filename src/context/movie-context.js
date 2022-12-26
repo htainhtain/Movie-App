@@ -16,8 +16,9 @@ export const movieContext = createContext({
 
 const selectedMovieReducer = (prevState, action) => {
   if (action.type === "SELECTED_MOVIE_CHANGE") {
-    const selectedMovies = action.selectedMovies;
-    const totalSelectedMoviesCount = action.selectedMovies.length;
+    const prevSelectedMovies = prevState.selectedMovies;
+    const selectedMovies = prevSelectedMovies.concat(action.selectedMovies);
+    const totalSelectedMoviesCount = selectedMovies.length;
     const totalMoviePrice = selectedMovies.reduce(
       (prevTotalPrice, movie) => prevTotalPrice + Math.round(movie.price),
       0
@@ -29,6 +30,7 @@ const selectedMovieReducer = (prevState, action) => {
       totalMoviePrice: totalMoviePrice,
     };
   }
+  
   if (action.type === "SELECTED_MOVIE_DELETED") {
     const newSelectedMovies = prevState.selectedMovies.filter(
       (element) => !action.movieToDelete.includes(element)
@@ -75,8 +77,6 @@ const MovieContextProvider = (props) => {
       totalMoviePrice: 0,
     }
   );
-
-  // console.log("selectedMoviestate: ", selectedMoviesState);
 
   const getMovieTrailer = (moveId) => {
     if (moveId) {

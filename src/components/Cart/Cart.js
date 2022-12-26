@@ -4,9 +4,10 @@ import { movieContext } from "../../context/movie-context";
 
 import SelectedMovieCard from "../Ui/SelectedMovieCard/SelectedMovieCard";
 import Alert from "@mui/material/Alert";
+import Modal from "../Ui/Modal/Modal";
 
 import "./Cart.css";
-import Modal from "../Ui/Modal/Modal";
+
 
 const Cart = (props) => {
   const context = useContext(movieContext);
@@ -15,14 +16,10 @@ const Cart = (props) => {
   const { totalMoviePrice } = context.selectedMoviesState;
   const { totalSelectedMovieCount } = context.selectedMoviesState;
 
-  const handleClearShoppingCart = () => {
-    context.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
-  };
-
   const handleOrderProduct = () => {
     props.cartCloseHandler();
     props.orderOpenHandler();
-    context.selectedMoviedispatch({ type: "CLEAR_SELECTED_MOVIE" });
+    props.clearShoppingCart();
   };
 
   return (
@@ -87,7 +84,7 @@ const Cart = (props) => {
             </div>
             <div
               className="clear-shopping-cart-container"
-              onClick={handleClearShoppingCart}
+              onClick={props.clearShoppingCart}
             >
               <span>Clear shopping cart</span>
             </div>

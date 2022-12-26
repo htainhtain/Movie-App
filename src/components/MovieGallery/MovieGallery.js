@@ -39,7 +39,7 @@ const MovieGallery = (props) => {
       const addedMovie = [...selectedMovies, selectedMovie];
       props.selectedMoviedispatch({
         type: "SELECTED_MOVIE_CHANGE",
-        selectedMovies: addedMovie,
+        selectedMovies: selectedMovie,
       });
     }
   };

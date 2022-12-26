@@ -1,6 +1,6 @@
 import React from "react";
+
 import Modal from "../Ui/Modal/Modal";
-// import ModalOrder from "../Ui/Modal/ModalOrder";
 import CountdownTimer from "./Countdown/CountdownTimer";
 
 import "./Order.css";

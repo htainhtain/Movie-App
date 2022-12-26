@@ -18,15 +18,15 @@ const selectedMovieReducer = (prevState, action) => {
   if (action.type === "SELECTED_MOVIE_CHANGE") {
     const selectedMovies = action.selectedMovies;
     const totalSelectedMoviesCount = action.selectedMovies.length;
-    let moviePrice = 0;
-    selectedMovies.forEach((movie) => {
-      moviePrice = moviePrice + Math.round(movie.price);
-    });
+    const totalMoviePrice = selectedMovies.reduce(
+      (prevTotalPrice, movie) => prevTotalPrice + Math.round(movie.price),
+      0
+    );
     localStorage.setItem("SelectedMovies", JSON.stringify(selectedMovies));
     return {
       selectedMovies: selectedMovies,
       totalSelectedMovieCount: totalSelectedMoviesCount,
-      totalMoviePrice: moviePrice,
+      totalMoviePrice: totalMoviePrice,
     };
   }
   if (action.type === "SELECTED_MOVIE_DELETED") {
@@ -35,14 +35,14 @@ const selectedMovieReducer = (prevState, action) => {
     );
     const totalSelectedMoviesCount = newSelectedMovies.length;
     localStorage.setItem("SelectedMovies", JSON.stringify(newSelectedMovies));
-    let moviePrice = 0;
-    newSelectedMovies.forEach((movie) => {
-      moviePrice = moviePrice + Math.round(movie.price);
-    });
+    const totalMoviePrice = newSelectedMovies.reduce(
+      (prevTotalPrice, movie) => prevTotalPrice + Math.round(movie.price),
+      0
+    );
     return {
       selectedMovies: newSelectedMovies,
       totalSelectedMovieCount: totalSelectedMoviesCount,
-      totalMoviePrice: moviePrice,
+      totalMoviePrice: totalMoviePrice,
     };
   }
   if (action.type === "CLEAR_SELECTED_MOVIE") {
@@ -75,6 +75,8 @@ const MovieContextProvider = (props) => {
       totalMoviePrice: 0,
     }
   );
+
+  // console.log("selectedMoviestate: ", selectedMoviesState);
 
   const getMovieTrailer = (moveId) => {
     if (moveId) {

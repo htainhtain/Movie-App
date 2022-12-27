@@ -12,44 +12,22 @@
 
 .hero-content {
   width: 80%;
-  margin: 0px 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-}
-
-.each-hero-content {
-  margin: 5px 0px;
+  gap: 0.7em;
 }
 
 .hero-title {
-  font-size: 48px;
+  font-size: 3rem;
 }
-
-/* imdb */
-/* .imdb-number {
-    font-size: 15px;
-    margin-left: 10px;
-  }
-  
-
-  
-  .movie-imdb {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } */
 
 .movie-description-container {
   width: 50%;
-  font-size: 17px;
-  line-height: 30px;
+  font-size: 1.1rem;
+  line-height: 1.7em;
   font-weight: 50;
-}
-
-.movie-description{
-  padding: 10px 0px;
 }
 
 /* movie trailer */
@@ -57,8 +35,9 @@
   background-color: var(--color-red-dark);
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  font-size: 20px;
+  gap: 0.5em;
+  padding: 0.6em 1.2em;
+  font-size: 1.25rem;
   font-weight: bold;
   text-decoration: none;
   color: var(--color-text-dark);
@@ -70,6 +49,26 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.play-icon {
-  margin-right: 10px;
+@media (max-width: 968px) {
+  .movie-description-container {
+    width: 100%;
+  }
+
+  .hero-content-container {
+    top: 40px;
+  }
+
+  .hero-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .movie-description-container {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 1.2rem;
+  }
 }

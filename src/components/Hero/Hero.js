@@ -6,28 +6,27 @@ import HeroContent from "./HeroContent/HeroContent";
 
 import "./Hero.css";
 
-
 const Hero = () => {
-  const context = useContext(movieContext);
+  const movieCtx = useContext(movieContext);
+
+  const { isLoading } = movieCtx;
+  const { movies } = movieCtx;
+  const { movieIndex } = movieCtx;
+  const { trailerKey } = movieCtx;
 
   //image url
   const heroImageUrl = `https://image.tmdb.org/t/p/original`;
 
   return (
     <section id="hero">
-      {!context.isLoading && (
+      {!isLoading && (
         <figure className="hero-movie-image-wrapper">
           <img
             className="hero-movie-image"
-            src={`${heroImageUrl}${
-              context.movies[context.movieIndex].backdrop_path
-            }`}
-            alt={`${context.movies[context.movieIndex].title}`}
+            src={`${heroImageUrl}${movies[movieIndex].backdrop_path}`}
+            alt={`${movies[movieIndex].title}`}
           />
-          <HeroContent
-            movie={context.movies[context.movieIndex]}
-            trailerKey={context.trailerKey}
-          />
+          <HeroContent movie={movies[movieIndex]} trailerKey={trailerKey} />
         </figure>
       )}
     </section>

@@ -13,9 +13,9 @@ const HeroContent = (props) => {
     <figcaption className="hero-content-container">
       <div className="hero-content">
         <header>
-          <h1 className="hero-title each-hero-content">{props.movie.title}</h1>
+          <h1 className="hero-title">{props.movie.title}</h1>
         </header>
-        <div className="movie-status-container each-hero-content">
+        <div className="movie-status-container">
           <MovieImdb
             voteAverage={props.movie.vote_average}
             voteCount={props.movie.vote_count}
@@ -26,7 +26,7 @@ const HeroContent = (props) => {
         </div>
         <a
           href={trailerUrl + props.trailerKey}
-          className="movie-trailer-container each-hero-content"
+          className="movie-trailer-container"
         >
           <PlayCircleFilledWhiteIcon className="play-icon" />
           <span>WATCH TRAILER</span>

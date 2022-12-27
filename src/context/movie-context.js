@@ -6,8 +6,9 @@ export const movieContext = createContext({
   movies: {},
   setMovies: () => {},
   trailerKey: "",
-  isLoading: true,
-  setIsLoading: () => {},
+  isLoading: () => {},
+  handleLoading: () => {},
+  closeLoading: () => {},
   getMovieTrailer: (movieId) => {},
   movieIndex: 0,
   selectedMoviesState: {},
@@ -30,7 +31,7 @@ const selectedMovieReducer = (prevState, action) => {
       totalMoviePrice: totalMoviePrice,
     };
   }
-  
+
   if (action.type === "SELECTED_MOVIE_DELETED") {
     const newSelectedMovies = prevState.selectedMovies.filter(
       (element) => !action.movieToDelete.includes(element)
@@ -67,6 +68,15 @@ const MovieContextProvider = (props) => {
   const [movies, setMovies] = useState({});
   const [trailerKey, setTrailerKey] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  //loading states
+  const handleLoading = () => {
+    setIsLoading(true);
+  };
+
+  const closeLoading = () => {
+    setIsLoading(false);
+  };
 
   //useReducer states
   const [selectedMoviesState, selectedMoviedispatch] = useReducer(
@@ -112,7 +122,8 @@ const MovieContextProvider = (props) => {
         setMovies: setMovies,
         trailerKey: trailerKey,
         isLoading: isLoading,
-        setIsLoading: setIsLoading,
+        handleLoading: handleLoading,
+        closeLoading: closeLoading,
         getMovieTrailer: getMovieTrailer,
         movieIndex: movieIndex,
         selectedMoviesState: selectedMoviesState,

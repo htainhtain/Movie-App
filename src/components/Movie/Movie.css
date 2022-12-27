@@ -1,6 +1,6 @@
 .movie-poster-container {
-  width: 250px;
-  height: 370px;
+  /* width: 250px;
+  height: 370px; */
   position: relative;
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@
   right: 10px;
   color: var(--color-text-dark);
   background-color: rgba(209, 213, 219, 0.5);
-  padding: 5px;
+  padding: 0.5em;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -27,10 +27,16 @@
   border: 0px;
 }
 
+.each-movie-description {
+  padding: 0.6em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
 .imdb-price-container {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0px;
 }
 
 .dollar-sign {
@@ -43,18 +49,12 @@
 
 .movie-release-date {
   color: var(--color-text-light-dark);
-  font-size: 12px;
-}
-
-.movie-original-title {
-  margin: 10px 0px;
-}
-
-.each-movie-description {
-  padding: 10px;
+  font-size: 0.8rem;
 }
 
 .genre-container {
   display: flex;
   flex-wrap: wrap;
 }
+
+

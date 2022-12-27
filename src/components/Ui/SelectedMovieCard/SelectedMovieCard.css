@@ -1,22 +1,21 @@
 .selected-movie {
-  min-width: 400px;
   border: 1px solid var(--color-light-grey-dark);
-  padding: 10px;
+  padding: 0.6em;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .selected-movie-delete-container {
-  width: 30px;
-  height: 30px;
+  width: 2em;
+  height: 2em;
   background-color: var(--color-red-dark);
-  transition: box-shadow ease 0.2s;
   cursor: pointer;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: box-shadow ease 0.2s;
 }
 
 .selected-movie-delete-container:hover {

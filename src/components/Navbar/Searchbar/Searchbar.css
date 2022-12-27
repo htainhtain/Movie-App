@@ -1,8 +1,8 @@
 .search-bar-container {
   border: solid 1px var(--color-light-grey-dark);
   border-radius: 6px;
-  width: 525px;
-  height: 36px;
+  width: 32em;
+  /* height: 36px; */
 }
 
 .search-bar-form {
@@ -16,7 +16,7 @@
 .search-bar-input {
   padding: 6px;
   width: 90%;
-  font-size: 17px;
+  font-size: 1rem;
   border: none;
   background-color: transparent;
   color: var(--color-text-dark);
@@ -39,10 +39,10 @@
 
 @media (max-width: 968px) {
   .search-bar-container {
-    width: 200px;
+    width: 10em;
   }
 
   .search-bar-input {
-    font-size: 13px;
+    font-size: 0.8rem;
   }
 }

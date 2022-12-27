@@ -4,13 +4,14 @@
   background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   z-index: 9999999;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   color: var(--color-text-dark);
   top: 0;
-  padding: 150px 0px;
+  padding: 9.3em 0em;
   overflow: hidden;
-  overflow-y: scroll;
 }
 
+.content {
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+}

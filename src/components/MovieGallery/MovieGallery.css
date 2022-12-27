@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 50px 0px;
+  padding: 3.1em 0em;
 }
 
 .movie-gallery-wrapper {
@@ -10,14 +10,26 @@
 }
 
 .movie-gallery-title {
-  font-size: 36px;
+  font-size: 2.2rem;
   font-weight: 900;
-  margin-bottom: 30px;
+  margin-bottom: 1.5em;
 }
 
 .movie-gallery {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 45px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  gap: 3em;
+}
+
+@media (max-width: 968px) {
+  .movie-gallery{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .movie-gallery{
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

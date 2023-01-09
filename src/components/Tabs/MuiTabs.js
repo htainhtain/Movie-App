@@ -63,7 +63,7 @@ export default function MuiTabs(props) {
         alignItems: "center",
       }}
     >
-      <Box sx={{ width: "80%", borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ width: "80%", maxWidth: "1440px", borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={props.tabVal}
           onChange={props.handleTabChange}

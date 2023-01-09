@@ -12,6 +12,7 @@
 
 .hero-content {
   width: 80%;
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   justify-content: center;
